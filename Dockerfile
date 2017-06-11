@@ -1,8 +1,10 @@
-FROM ubuntu:16.04
+FROM node:6.11
 
-RUN apt-get update && apt-get install -y software-properties-common
-RUN add-apt-repository -y ppa:ethereum/ethereum && add-apt-repository -y ppa:ethereum/ethereum-dev
-RUN apt-get update && apt-get install -y nodejs npm git ethereum
-RUN ln -s /usr/bin/nodejs /usr/bin/node
+RUN apt-get update && apt-get install -y software-properties-common git
 RUN npm install -g truffle
 RUN npm install -g ethereumjs-testrpc
+
+RUN mkdir /root/app
+WORKDIR /root/app
+
+EXPOSE 3000 3001
